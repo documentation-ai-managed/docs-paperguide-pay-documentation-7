@@ -1,0 +1,28 @@
+---
+title: Cannot Upload File
+description: Resolve file upload errors in Paperguide-pay.
+---
+
+## Symptoms
+
+- Upload fails
+- Error: "Unsupported file format" or "File too large"
+
+## Causes
+
+- File exceeds 20MB limit
+- Incorrect file extension
+
+## Solution
+
+<Steps>
+  <Step title="Check file size">
+    ````bash
+    # Ensure file is under 20MB
+    ls -lh yourfile.pdf
+    ````
+  </Step>
+  <Step title="Use supported formats">
+    Supported: PDF, DOCX, TXT
+  </Step>
+</Steps>

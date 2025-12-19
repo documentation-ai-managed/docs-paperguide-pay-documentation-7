@@ -1,0 +1,124 @@
+---
+title: Changelog
+description: Track the latest updates, improvements, and fixes in Paperguide-pay to stay informed about new features and changes.
+---
+
+## Recent Updates
+
+Stay current with Paperguide-pay's evolution. You can find detailed release notes below, organized by version. Each release includes new features, improvements, bug fixes, and any breaking changes with migration guidance.
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Added webhook support for real-time payment notifications. Configure your endpoint at `https://api.example.com/v1/webhooks`.
+- Introduced batch invoicing API to process multiple payments efficiently.
+
+## Improvements
+
+- Enhanced dashboard performance by `>30%` for large datasets.
+- Updated API rate limits to `{requests: 5000/hour}` for premium plans.
+
+## Bug Fixes
+
+- Fixed intermittent failures in subscription renewal webhooks.
+- Resolved token expiration issues during long-running sessions.
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["bugfix", "improvement"]}>
+
+## Improvements
+
+- Optimized PDF invoice generation speed.
+- Added customizable branding options in the invoice templates.
+
+## Bug Fixes
+
+- Corrected currency conversion errors for non-USD transactions.
+- Patched security vulnerability in OAuth token refresh (CVE-2024-XXXX).
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["feature", "breaking"]}>
+
+## New Features
+
+- Launched core payment processing API with support for cards, ACH, and wallets.
+- Built interactive dashboard at `https://dashboard.example.com` for transaction monitoring.
+
+## Breaking Changes
+
+- Renamed `paymentIntent` to `transaction` in API payloads. See migration guide below.
+
+</Update>
+
+## Migration Guides
+
+For breaking changes, follow these platform-specific guides to update your integration quickly.
+
+<Tabs>
+  <Tab title="JavaScript" icon="code">
+    <Steps>
+      <Step title="Update Imports">
+        Replace old endpoint calls:
+````javascript
+// Old
+const intent = await fetch('https://api.example.com/v1/paymentIntent', {
+  method: 'POST',
+  headers: { 'Authorization': `Bearer ${YOUR_API_KEY}` }
+});
+
+// New
+const transaction = await fetch('https://api.example.com/v1/transaction', {
+  method: 'POST',
+  headers: { 'Authorization': `Bearer ${YOUR_API_KEY}` }
+});
+````
+      </Step>
+      <Step title="Test Integration">
+        Use the sandbox environment at `https://api.example.com/sandbox`.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Python" icon="python">
+    <CodeGroup tabs="requests,httpx">
+````python
+# requests
+import requests
+response = requests.post('https://api.example.com/v1/transaction',
+                        headers={'Authorization': f'Bearer {YOUR_API_KEY}'})
+````
+````python
+# httpx
+import httpx
+response = httpx.post('https://api.example.com/v1/transaction',
+                      headers={'Authorization': f'Bearer {YOUR_API_KEY}'})
+````
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+<Callout kind="alert">
+When migrating, test in sandbox mode first to avoid production disruptions.
+</Callout>
+
+## Upcoming Roadmap
+
+Discover what's next for Paperguide-pay. These features are in active development.
+
+<Columns cols={3}>
+  <Card title="Multi-Currency" icon="globe" href="#">
+    Full support for `>150` currencies with real-time rates.
+  </Card>
+  <Card title="Advanced Analytics" icon="bar-chart-3" href="#">
+    AI-powered insights on payment trends and churn.
+  </Card>
+  <Card title="Mobile SDKs" icon="smartphone" href="#">
+    Native iOS and Android libraries for seamless checkout.
+  </Card>
+</Columns>
+
+<Callout kind="tip">
+Subscribe to our RSS feed or join the Discord community at `https://discord.gg/paperguide-pay` to get notified of new releases.
+</Callout>
